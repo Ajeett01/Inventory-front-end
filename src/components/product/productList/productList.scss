@@ -1,0 +1,103 @@
+.product-list {
+  color: #333;
+  .table {
+    padding: 5px;
+    width: 100%;
+    overflow-x: auto;
+
+    .search {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 1.4rem;
+
+      thead {
+        border-top: 2px solid var(--light-blue);
+        border-bottom: 2px solid var(--light-blue);
+      }
+
+      th {
+        border: 1px solid #eee;
+      }
+
+      th,
+      td {
+        vertical-align: top;
+        text-align: left;
+        padding: 8px;
+
+        &.icons {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          > * {
+            margin-right: 7px;
+            cursor: pointer;
+            vertical-align: middle;
+            align-self: center;
+          }
+          button {
+            background-color: #10b0e5; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 2px 2px;
+            border-radius: 4px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+          }
+        }
+      }
+
+      tr {
+        border-bottom: 1px solid #ccc;
+      }
+
+      tr:nth-child(even) {
+        background-color: #fff;
+      }
+      tbody {
+        tr:hover {
+          cursor: pointer;
+          background-color: rgba(31, 147, 255, 0.3);
+        }
+      }
+    }
+  }
+}
+
+.add {
+  background-color: #10b0e5; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 2px 2px;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.stock{
+  border: none;
+  padding: 10px 20px;
+  background-color: #ccc;
+  margin: 2px 2px;
+  text-decoration: double;
+  display: flex;
+  justify-content: right;
+  color: rgb(22, 33, 235);
+  text-align: center;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
