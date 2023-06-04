@@ -1,4 +1,6 @@
 .product-list {
+  margin-left: 15px;
+  margin-right: 15px;
   color: #333;
   .table {
     padding: 5px;
@@ -91,12 +93,27 @@
 .stock{
   border: none;
   padding: 10px 20px;
+  border-radius: 4px;
   background-color: #ccc;
   margin: 2px 2px;
   text-decoration: double;
   display: flex;
   justify-content: right;
   color: rgb(22, 33, 235);
+  text-align: center;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.active{
+  border: none;
+  padding: 10px 20px;
+  background-color: #1088c4;
+  margin: 2px 2px;
+  border-radius: 4px;
+  text-decoration: double;
+  display: flex;
+  justify-content: right;
+  color: rgb(3, 3, 5);
   text-align: center;
   transition-duration: 0.4s;
   cursor: pointer;

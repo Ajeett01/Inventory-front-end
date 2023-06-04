@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ProductForm from '../../components/productForm/ProductForm'
 import Loader from "../../components/loader/Loader"
-
+import '../../components/product/addProduct.scss';
 import {
   createProduct,
   selectIsLoading,
@@ -23,6 +23,7 @@ const initialState = {
 const AddProduct = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
     const [product, setProduct] = useState(initialState);
     const [productImage, setProductImage] = useState('');
     const [imagePreview, setImagePreview] = useState(null);
@@ -31,6 +32,12 @@ const AddProduct = () => {
     const isLoading = useSelector(selectIsLoading);
 
     const { name, code ,category, price, quantity, hold_quantity,purchase_price } = product;
+
+    const [modal, setModal] = useState(false);
+
+    const toggleModal = () =>{
+      setModal(!modal)
+    }
 
     const handleInputChange = (e) => {
       const { name, value } = e.target;
@@ -62,8 +69,10 @@ const AddProduct = () => {
       navigate('/');
     };
   return (
-    <div>
-        {isLoading && <Loader />}
+    <div className='modal'>
+      <div className='overlay'>
+        <div className='modal-content'>
+          {isLoading && <Loader />}
       <h3 className="--mt">Add New Product</h3>
       <ProductForm
         product={product}
@@ -75,6 +84,8 @@ const AddProduct = () => {
         handleImageChange={handleImageChange}
         saveProduct={saveProduct}
       />
+        </div>
+      </div>
     </div>
   );
 }

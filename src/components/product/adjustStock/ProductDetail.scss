@@ -29,32 +29,16 @@
   padding: 5px;
 }
 .container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  display: flex;
+  justify-content: flex-start;
+  padding-right: 130px;
+  margin-bottom: 1px;
   cursor: pointer;
   font-size: 15px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-.container:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-.container input:checked ~ .checkmark:after {
-  display: block;
 }
 .mywidth {
-  width: 100px;   
+  width: 100px;  
+  display: flex; 
 }
 .save{
     background-color: #10b0e5; /* Green */
@@ -83,4 +67,15 @@
   border-radius: 4px;
   transition-duration: 0.4s;
   cursor: pointer;
+}
+.newdiv{
+  display: flex;
+  #add{
+    display: flex;
+  }
+}
+.ip{
+  padding-left: 5px;
+  margin-right: 10px;
+  height: 25px;
 }

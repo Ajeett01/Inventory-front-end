@@ -13,87 +13,87 @@ import {
 import ProductForm from '../../components/productForm/ProductForm';
 
 const EditProduct = () => {
-    const { id } = useParams();
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const isLoading = useSelector(selectIsLoading);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoading = useSelector(selectIsLoading);
 
-    const productEdit = useSelector(selectProduct);
+  const productEdit = useSelector(selectProduct);
 
-    const [product, setProduct] = useState(productEdit);
-    const [productImage, setProductImage] = useState('');
-    const [imagePreview, setImagePreview] = useState(null);
-    const [description, setDescription] = useState('');
+  const [product, setProduct] = useState(productEdit);
+  const [productImage, setProductImage] = useState('');
+  const [imagePreview, setImagePreview] = useState(null);
+  const [description, setDescription] = useState('');
 
-    useEffect(() => {
-      dispatch(getProduct(id));
-    }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(getProduct(id));
+  }, [dispatch, id]);
 
-    useEffect(() => {
-      setProduct(productEdit);
+  useEffect(() => {
+    setProduct(productEdit);
 
-      setImagePreview(
-        productEdit && productEdit.image
-          ? `${productEdit.image.filePath}`
-          : null
-      );
+    setImagePreview(
+      productEdit && productEdit.image ? `${productEdit.image.filePath}` : null
+    );
 
-      setDescription(
-        productEdit && productEdit.description ? productEdit.description : ''
-      );
-    }, [productEdit]);
+    setDescription(
+      productEdit && productEdit.description ? productEdit.description : ''
+    );
+  }, [productEdit]);
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProduct({ ...product, [name]: value });
+  };
 
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setProduct({ ...product, [name]: value });
-    };
+  const handleImageChange = (e) => {
+    setProductImage(e.target.files[0]);
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
+  };
 
-    const handleImageChange = (e) => {
-      setProductImage(e.target.files[0]);
-      setImagePreview(URL.createObjectURL(e.target.files[0]));
-    };
+  const saveProduct = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('name', product?.name);
+    formData.append('code', product?.code);
+    formData.append('category', product?.category);
+    formData.append('quantity', product?.quantity);
+    formData.append('hold_quantity', product?.hold_quantity);
+    formData.append('price', product?.price);
+    formData.append('purchase_price', product?.purchase_price);
+    formData.append('description', description);
+    if (productImage) {
+      formData.append('image', productImage);
+    }
 
-    const saveProduct = async (e) => {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append('name', product?.name);
-      formData.append('code', product?.code);
-      formData.append('category', product?.category);
-      formData.append('quantity', product?.quantity);
-      formData.append('hold_quantity', product?.hold_quantity);
-      formData.append('price', product?.price);
-      formData.append('purchase_price', product?.purchase_price);
-      formData.append('description', description);
-      if (productImage) {
-        formData.append('image', productImage);
-      }
+    console.log(...formData);
 
-      console.log(...formData);
+    await dispatch(updateProduct({ id, formData }));
+    await dispatch(getProducts());
 
-      await dispatch(updateProduct({ id, formData }));
-      await dispatch(getProducts());
-
-      navigate('/');
-    };
-
+    navigate('/');
+  };
 
   return (
     <div>
-      {isLoading && <Loader />}
-      <h3 className="--mt">Edit Product</h3>
-      <ProductForm
-        product={product}
-        productImage={productImage}
-        imagePreview={imagePreview}
-        description={description}
-        setDescription={setDescription}
-        handleInputChange={handleInputChange}
-        handleImageChange={handleImageChange}
-        saveProduct={saveProduct}
-      />
+      <div>
+        {isLoading && <Loader />}
+        <h3 className="--mt">Edit Product</h3>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <ProductForm
+            product={product}
+            productImage={productImage}
+            imagePreview={imagePreview}
+            description={description}
+            setDescription={setDescription}
+            handleInputChange={handleInputChange}
+            handleImageChange={handleImageChange}
+            saveProduct={saveProduct}
+          />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default EditProduct;

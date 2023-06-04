@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import './ProductForm.scss';
 import Card from '../card/Card';
 import { Link } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
 
 const ProductForm = ({
   product,
@@ -89,7 +90,7 @@ const ProductForm = ({
             onChange={handleInputChange}
           />
           <label style={{ display: 'none' }}>Total Price:</label>
-          <div className='unique'>
+          <div className="unique">
             <input
               type="text"
               placeholder="Total Price"
@@ -98,7 +99,16 @@ const ProductForm = ({
               onChange={handleInputChange}
             />
           </div>
-
+          <br />
+          <Form>
+            <Form.Check
+              type="switch"
+              id="custom-switch"
+              label="Low Stock Warning"
+              defaultChecked
+            />
+          </Form>
+          <br />
           <label>Product Description:</label>
           <ReactQuill
             theme="snow"
